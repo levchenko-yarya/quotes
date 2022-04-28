@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql:5.7
+    container_name: quotes-dbs
+    environment:
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+    ports:
+      - 3307:3306
+    volumes:
+      # путь локальной папки бд
+      - ./databases/mysql57:/var/lib/mysql
+    networks:
+      - internal
+    restart: unless-stopped
+
+  server:
+    depends_on:
+      - db
+    container_name: quotes-server
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - internal
+    restart: unless-stopped
+
+networks:
+  internal:
