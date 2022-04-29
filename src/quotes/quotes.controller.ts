@@ -19,7 +19,7 @@ export class QuotesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.quotesService.findOne(+id);
+    return this.quotesService.findOne(id);
   }
 
   @Patch(':id')
@@ -29,6 +29,6 @@ export class QuotesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.quotesService.remove(+id);
+    return this.quotesService.remove(id);
   }
 }
