@@ -12,8 +12,8 @@ export class QuotesService {
     private quotesRepository: Repository<Quote>,
   ) {}
 
-  create(createQuoteDto: CreateQuoteDto) {
-    return 'This action adds a new quote';
+  create(createQuoteDto: CreateQuoteDto): Quote {
+    return this.quotesRepository.create(createQuoteDto);
   }
 
   findAll(): Promise<Quote[]> {
