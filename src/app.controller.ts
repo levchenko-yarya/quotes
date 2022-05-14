@@ -6,7 +6,10 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private authService: AuthService, private readonly appService: AppService) {}
+  constructor(
+    private authService: AuthService,
+    private readonly appService: AppService,
+  ) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
